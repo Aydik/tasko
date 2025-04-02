@@ -1,0 +1,26 @@
+.navbar-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 10;
+
+  .navbar-bounds {
+    background: white;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  .navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 18px;
+    display: grid;
+    grid-template-rows: var(--header-height) var(--divider-height) auto var(--divider-height) 112px;
+  }
+}
