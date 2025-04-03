@@ -34,7 +34,7 @@ export const NavBar: React.FC = () => {
                     <div className={styles['h3-container']}>
                         <H3 text={'Помощь'}/>
                     </div>
-                    <ul className={styles['nav-list']}>
+                    <ul className={`${styles['nav-list']} ${styles['nav-list_help']}`}>
                         {helpPages.map(page => (
                             <li className={styles['nav-list__item']}>
                                 <NavLink url={page.url} icon={page.icon} text={page.text}

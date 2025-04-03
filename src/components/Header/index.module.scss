@@ -1,0 +1,11 @@
+.header{
+  height: var(--header-height);
+  padding-top: 27px;
+  box-sizing: border-box;
+  &-content{
+    margin-left: 54px;
+    margin-right: 88px;
+    display: grid;
+    grid-template-columns: auto 260px;
+  }
+}
