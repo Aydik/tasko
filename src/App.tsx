@@ -4,6 +4,8 @@ import {TaskPage} from "./pages/TaskPage";
 import {MainLayout} from "./components/layouts/MainLayout";
 
 import './index.module.scss'
+import {TeamPage} from "./pages/TeamPage";
+import {DashboardPage} from "./pages/DashboardPage";
 
 
 function App(): React.ReactElement {
@@ -13,7 +15,8 @@ function App(): React.ReactElement {
                 <Route path="/" element={<></>}/>
                 <Route element={<MainLayout/>}>
                     <Route path="/tasks" element={<TaskPage/>}/>
-                    {/*<Route path="/teams" element={<Teams/>}/>*/}
+                    <Route path="/teams" element={<TeamPage/>}/>
+                    <Route path="/dashboards" element={<DashboardPage/>}/>
                 </Route>
             </Routes>
         </Router>
