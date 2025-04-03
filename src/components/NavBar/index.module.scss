@@ -4,7 +4,7 @@
   height: 100vh;
   z-index: 10;
 
-  .nav-bar-bounds {
+  .nav-bar__bounds {
     background: white;
     position: relative;
     width: 100%;
@@ -22,5 +22,16 @@
     padding: 0 18px;
     display: grid;
     grid-template-rows: var(--header-height) auto var(--divider-height) 112px;
+    .nav-list{
+      list-style-type: none;
+      padding: 0 7px;
+      margin: 0;
+      &__item{
+        margin-bottom: 5px;
+      }
+    }
+    .h3-container{
+      padding: 40px 17px 20px;
+    }
   }
 }

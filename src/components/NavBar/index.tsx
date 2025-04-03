@@ -4,24 +4,44 @@ import {useLocation} from "react-router-dom";
 import {Divider} from "../../ui/Divider";
 import {LogoLink} from "../../ui/LogoLink";
 import {NavLink} from "../../ui/NavLink";
+import {pages} from "./index.interfaces.ts";
+import {H3} from "../../ui/H3";
 
 export const NavBar: React.FC = () => {
-    const location = useLocation(); // Get the current location (URL)
+    const location = useLocation();
     const currentPath = location.pathname;
 
     const isSelected = (path: string) => {
         return currentPath === path
     };
 
+    const {mainPages, helpPages} = pages
+
     return (
         <div className={styles['nav-bar-container']}>
-            <div className={styles['nav-bar-bounds']}/>
+            <div className={styles['nav-bar__bounds']}/>
             <div className={styles['nav-bar']}>
                 <LogoLink url={"/"}/>
                 <nav className={styles['nav']}>
-                    <NavLink url={"/tasks"} icon={"tasks-icon"} text={"Задачи"} selected={isSelected("/tasks")}/>
-                    <NavLink url={"/teams"} icon={"teams-icon"} text={"Команды"} selected={isSelected("/teams")}/>
-                    <NavLink url={"/dashboards"} icon={"dashboards-icon"} text={"Дэшборды"} selected={isSelected("/dashboards")}/>
+                    <ul className={styles['nav-list']}>
+                        {mainPages.map(page => (
+                            <li className={styles['nav-list__item']}>
+                                <NavLink url={page.url} icon={page.icon} text={page.text}
+                                         selected={isSelected(page.url)}/>
+                            </li>
+                        ))}
+                    </ul>
+                    <div className={styles['h3-container']}>
+                        <H3 text={'Помощь'}/>
+                    </div>
+                    <ul className={styles['nav-list']}>
+                        {helpPages.map(page => (
+                            <li className={styles['nav-list__item']}>
+                                <NavLink url={page.url} icon={page.icon} text={page.text}
+                                         selected={isSelected(page.url)}/>
+                            </li>
+                        ))}
+                    </ul>
                 </nav>
                 <Divider/>
                 <div className={styles['account-container']}>

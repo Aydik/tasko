@@ -3,7 +3,7 @@
   width: 100%;
   height: 40px;
 
-  .nav-link-bounds {
+  .nav-link__bounds {
     transition: 0.3s;
     position: relative;
     width: 100%;
@@ -47,7 +47,7 @@
   }
 
   &:hover, &_selected {
-    .nav-link-bounds {
+    .nav-link__bounds {
       background: var(--nav-link-selected-color);
     }
 
