@@ -5,7 +5,8 @@
   &-content{
     margin-left: 54px;
     margin-right: 88px;
-    display: grid;
-    grid-template-columns: auto 260px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
