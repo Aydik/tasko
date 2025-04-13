@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './index.module.scss'
-import {Header} from "../../components/Header";
-import {Divider} from "../../ui/Divider";
+import {Header} from "../../shared/components/Header";
+import {Divider} from "../../shared/ui/Divider";
 
 export const Task: React.FC = () => {
     return (

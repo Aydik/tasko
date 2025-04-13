@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import {TaskPage} from "./pages/TaskPage";
-import {MainLayout} from "./components/layouts/MainLayout";
+import {MainLayout} from "./shared/components/layouts/MainLayout";
 
 import './index.module.scss'
 import {TeamPage} from "./pages/TeamPage";
