@@ -2,18 +2,20 @@ import {FC} from "react";
 
 interface Props {
     name: string;
-    size: string | number;
+    size: { width: number, height: number };
+    className?: string;
 }
 
-export const Icon: FC<Props> = ({name, size}) => {
+export const Icon: FC<Props> = ({name, size, className}) => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg"
-            style={{
-                width: `${size}`,
-                height: '${size}'
-            }}
+             style={{
+                 width: size.width,
+                 height: size.height
+             }}
+             className={className}
         >
-            <use xlinkHref={`/sprite.svg#${name}`}></use>
+            <use xlinkHref={`/public/assets/images/icons/sprites.svg#${name}`}></use>
         </svg>
     )
 }

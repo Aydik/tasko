@@ -3,7 +3,7 @@ import {INavLink} from 'shared/interfaces/NavLink';
 export const mainPages: INavLink[] = [
     {url: '/tasks', text: 'Задачи', icon: 'tasks-icon'},
     {url: '/teams', text: 'Команды', icon: 'teams-icon'},
-    {url: '/dashboards', text: 'Дэшборды', icon: 'dashboards-icon'}
+    {url: '/dashboards', text: 'Дэшборды', icon: 'dashboard-icon'}
 ];
 
 export const helpPages: INavLink[] = [
