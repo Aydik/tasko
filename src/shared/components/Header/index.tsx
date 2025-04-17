@@ -1,16 +1,22 @@
 import React from "react";
 import styles from './index.module.scss'
-import {HeaderProps} from "./index.interfaces.ts";
-import {H1} from "../../ui/H1";
 import {SearchBar} from "../../ui/SearchBar";
+import {Typography} from "../../ui/Typography";
+import {Divider} from "shared/ui/Divider";
 
-export const Header: React.FC<HeaderProps> = ({title}: HeaderProps) => {
+interface Props {
+    title: string
+}
+
+export const Header: React.FC<Props> = ({title}) => {
     return (
         <header className={styles['header']}>
             <div className={styles['header-content']}>
-                <H1 text={title}/>
+                <Typography variant={'h1'} className={styles['header-title']}>{title}</Typography>
                 <SearchBar/>
             </div>
+            <Divider className={styles['divider']}/>
         </header>
+
     )
 }

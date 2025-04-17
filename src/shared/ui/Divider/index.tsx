@@ -1,8 +1,12 @@
 import React from "react";
 import styles from './index.module.scss'
 
-export const Divider: React.FC = () => {
+interface Props {
+    className?: string;
+}
+
+export const Divider: React.FC<Props> = ({className}) => {
     return (
-        <div className={styles['divider']}/>
+        <div className={`${styles.divider} ${className}`}/>
     )
 }

@@ -1,12 +1,27 @@
-.header{
+.header {
+  position: relative;
   height: var(--header-height);
   padding-top: 27px;
   box-sizing: border-box;
-  &-content{
+
+  &-content {
     margin-left: 54px;
     margin-right: 88px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  &-title {
+    color: black;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  .divider{
+    position: absolute;
+    left: 28px;
+    right: 46px;
+    bottom: 0;
   }
 }

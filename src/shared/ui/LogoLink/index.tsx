@@ -2,15 +2,15 @@ import React from "react";
 import styles from './index.module.scss'
 import {Link} from "react-router-dom";
 
-interface LogoLinkProps {
+interface Props {
     url: string;
 }
 
-export const LogoLink: React.FC<LogoLinkProps> = ({url}: LogoLinkProps) => {
+export const LogoLink: React.FC<Props> = ({url}) => {
     return (
         <div className={styles['logo-link-container']}>
             <Link to={url} className={styles['logo-link']}>
-                <img src={"/src/assets/images/vector/logo.svg"} alt="home" className={styles['logo']}/>
+                <img src={"/src/shared/assets/images/icons/logo.svg"} alt="home" className={styles.logo}/>
             </Link>
         </div>
     )
