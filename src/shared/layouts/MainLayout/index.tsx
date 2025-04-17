@@ -1,11 +1,11 @@
-import React from "react";
-import {NavBar} from "../../../widgets/NavBar";
+import {FC} from "react";
+import {NavBar} from "widgets/NavBar";
 import {Outlet} from "react-router-dom";
 import styles from './index.module.scss'
 
-export const MainLayout: React.FC = () => {
+export const MainLayout: FC = () => {
     return (
-        <div className={styles['main-layout']}>
+        <div className={styles.mainLayout}>
             <NavBar/>
             <Outlet/>
         </div>

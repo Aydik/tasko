@@ -1,6 +1,6 @@
-import React from "react";
+import {FC} from "react";
 
-export const TeamPage: React.FC = () => {
+export const TeamPage: FC = () => {
     return (
         <>
             <div>team page</div>

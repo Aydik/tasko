@@ -1,10 +1,8 @@
-import React from "react";
-import {Task} from "../../widgets/Task";
+import {FC} from "react";
+import {TaskBoard} from "widgets/TaskBoard";
 
-export const TaskPage: React.FC = () => {
+export const TaskPage: FC = () => {
     return (
-        <>
-            <Task/>
-        </>
+        <TaskBoard/>
     )
 }

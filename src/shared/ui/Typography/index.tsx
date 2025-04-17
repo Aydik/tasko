@@ -1,13 +1,13 @@
-import React from 'react';
+import {FC, ReactNode} from 'react';
 import styles from './index.module.scss'
 
-interface TypographyProps {
+interface Props {
     variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
     className?: string;
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
-export const Typography: React.FC<TypographyProps> = ({variant = 'p', className, children}) => {
+export const Typography: FC<Props> = ({variant = 'p', className, children}) => {
     const finalClassName: string = `${className} ${styles.typography} `;
     switch (variant) {
         case 'h1':

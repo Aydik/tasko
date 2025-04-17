@@ -4,6 +4,5 @@ import {FC} from "react";
 
 export const AppRouter: FC = () => {
     const element = useRoutes(routeConfig)
-
     return element
 }

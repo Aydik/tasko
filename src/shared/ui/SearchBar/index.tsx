@@ -1,7 +1,7 @@
-import React from "react";
+import {FC} from "react";
 import styles from './index.module.scss';
 
-export const SearchBar: React.FC = () => {
+export const SearchBar: FC = () => {
     return (
         <div className={styles.searchBar}>
             <input

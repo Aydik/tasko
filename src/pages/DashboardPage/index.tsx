@@ -1,6 +1,6 @@
-import React from "react";
+import {FC} from "react";
 
-export const DashboardPage: React.FC = () => {
+export const DashboardPage: FC = () => {
     return (
         <>
             <div>dashboard page</div>

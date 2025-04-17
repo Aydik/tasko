@@ -1,42 +1,41 @@
-.nav-bar-container {
+.navBar {
   position: sticky;
   top: 0;
   height: 100vh;
   z-index: 10;
+  padding: 0 18px;
+  background: white;
+  border-top-right-radius: var(--nav-bar-border-radius);
+  border-bottom-right-radius: var(--nav-bar-border-radius);
+  display: grid;
+  grid-template-rows: auto var(--divider-height) 112px;
 
-  .nav-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 0 18px;
-    background: white;
-    border-top-right-radius: var(--nav-bar-border-radius);
-    border-bottom-right-radius: var(--nav-bar-border-radius);
-    display: grid;
-    grid-template-rows: var(--header-height) auto var(--divider-height) 112px;
+  .logoLink_container{
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .help-title {
-      margin-top: 40px;
-      padding: 0 17px;
-      color: grey;
-      font-size: 16px;
-      font-weight: 600;
+  .helpTitle {
+    margin-top: 40px;
+    padding: 0 17px;
+    color: grey;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .navList {
+    list-style-type: none;
+    padding: 0 7px;
+    margin: 0;
+
+    &__item {
+      margin-bottom: 5px;
     }
 
-    .nav-list {
-      list-style-type: none;
-      padding: 0 7px;
-      margin: 0;
-
-      &__item {
-        margin-bottom: 5px;
-      }
-
-      &_help {
-        margin-top: 20px;
-      }
+    &_help {
+      margin-top: 20px;
     }
   }
 }
