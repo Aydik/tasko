@@ -1,0 +1,41 @@
+.navBar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 10;
+  padding: 0 18px;
+  background: white;
+  border-top-right-radius: var(--nav-bar-border-radius);
+  border-bottom-right-radius: var(--nav-bar-border-radius);
+  display: grid;
+  grid-template-rows: auto var(--divider-height) 112px;
+
+  .logoLink_container{
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .helpTitle {
+    margin-top: 40px;
+    padding: 0 17px;
+    color: grey;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .navList {
+    list-style-type: none;
+    padding: 0 7px;
+    margin: 0;
+
+    &__item {
+      margin-bottom: 5px;
+    }
+
+    &_help {
+      margin-top: 20px;
+    }
+  }
+}
