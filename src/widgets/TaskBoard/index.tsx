@@ -1,10 +1,10 @@
-import React from "react";
-import {Header} from "shared/components/Header";
+import { FC } from 'react';
+import { Header } from 'shared/components/Header';
 
-export const TaskBoard: React.FC = () => {
-    return (
-        <div>
-            <Header title={"Доска команды"}/>
-        </div>
-    )
-}
+export const TaskBoard: FC = () => {
+  return (
+    <div>
+      <Header title={'Доска команды'} />
+    </div>
+  );
+};

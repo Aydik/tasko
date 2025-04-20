@@ -1,9 +1,9 @@
-import {FC} from "react";
+import { FC } from 'react';
 
 export const DashboardPage: FC = () => {
-    return (
-        <>
-            <div>dashboard page</div>
-        </>
-    )
-}
+  return (
+    <>
+      <div>dashboard page</div>
+    </>
+  );
+};

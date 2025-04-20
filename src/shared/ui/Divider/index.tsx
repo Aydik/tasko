@@ -1,12 +1,10 @@
-import {FC} from "react";
-import styles from './index.module.scss'
+import { FC } from 'react';
+import styles from './index.module.scss';
 
 interface Props {
-    className?: string;
+  className?: string;
 }
 
-export const Divider: FC<Props> = ({className}) => {
-    return (
-        <div className={`${styles.divider} ${className}`}/>
-    )
-}
+export const Divider: FC<Props> = ({ className }) => {
+  return <div className={`${styles.divider} ${className}`} />;
+};

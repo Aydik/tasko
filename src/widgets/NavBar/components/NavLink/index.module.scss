@@ -23,7 +23,8 @@
     color: inherit;
   }
 
-  &:hover, &_selected {
+  &:hover,
+  &_selected {
     background: var(--nav-link-selected-color);
     color: var(--primary-color);
   }
