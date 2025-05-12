@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import { Header } from 'shared/components/Header';
+import { Caption } from 'src/shared/components/Caption';
 
 export const TaskBoard: FC = () => {
   return (
     <div>
-      <Header title={'Доска команды'} />
+      <Caption title="Доска команды" />
     </div>
   );
 };

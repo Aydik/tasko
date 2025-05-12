@@ -8,16 +8,16 @@ interface Props {
   title: string;
 }
 
-export const Header: FC<Props> = ({ title }) => {
+export const Caption: FC<Props> = ({ title }) => {
   return (
-    <header className={styles.header}>
-      <div className={styles.header__content}>
-        <Typography variant={'h1'} className={styles.header__title}>
+    <div className={styles.caption}>
+      <div className={styles.caption__content}>
+        <Typography variant={'h1'} className={styles.caption__title}>
           {title}
         </Typography>
         <SearchBar />
       </div>
       <Divider className={styles.divider} />
-    </header>
+    </div>
   );
 };

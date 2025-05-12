@@ -2,9 +2,9 @@ import { FC } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Divider } from 'shared/ui/Divider';
 import { Typography } from 'shared/ui/Typography';
-import { LogoLink } from '../LogoLink';
-import { NavLink } from '../NavLink';
-import { MAIN_PAGES, HELP_PAGES } from 'widgets/NavBar/model/constants.ts';
+import { LogoLink } from './components/LogoLink';
+import { NavLink } from './components/NavLink';
+import { MAIN_PAGES, HELP_PAGES } from 'widgets/NavBar/constants';
 import styles from './index.module.scss';
 
 export const NavBar: FC = () => {

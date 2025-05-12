@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import styles from './index.module.scss';
 import { Link } from 'react-router-dom';
-import { INavLink } from 'widgets/NavBar/model/types.ts';
+import { NavLink as NavLinkType } from 'widgets/NavBar/types';
 import { Icon } from 'shared/ui/Icon/Icon.tsx';
 
-interface Props extends INavLink {
+interface Props extends NavLinkType {
   selected?: boolean;
 }
 
