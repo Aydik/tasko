@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styles from './index.module.scss';
 import { Link } from 'react-router-dom';
-import { INavLink } from 'shared/interfaces/NavLink.ts';
+import { INavLink } from 'widgets/NavBar/model/types.ts';
 import { Icon } from 'shared/ui/Icon/Icon.tsx';
 
 interface Props extends INavLink {

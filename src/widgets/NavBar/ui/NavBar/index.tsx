@@ -4,7 +4,7 @@ import { Divider } from 'shared/ui/Divider';
 import { Typography } from 'shared/ui/Typography';
 import { LogoLink } from '../LogoLink';
 import { NavLink } from '../NavLink';
-import { mainPages, helpPages } from 'widgets/NavBar/model/pages.ts';
+import { MAIN_PAGES, HELP_PAGES } from 'widgets/NavBar/model/constants.ts';
 import styles from './index.module.scss';
 
 export const NavBar: FC = () => {
@@ -20,7 +20,7 @@ export const NavBar: FC = () => {
           <LogoLink url="/" />
         </div>
         <ul className={styles.navList}>
-          {mainPages.map((page) => (
+          {MAIN_PAGES.map((page) => (
             <li key={page.url} className={styles.navList__item}>
               <NavLink
                 url={page.url}
@@ -35,7 +35,7 @@ export const NavBar: FC = () => {
           Помощь
         </Typography>
         <ul className={`${styles.navList} ${styles.navList_help}`}>
-          {helpPages.map((page) => (
+          {HELP_PAGES.map((page) => (
             <li key={page.url} className={styles.navList__item}>
               <NavLink
                 url={page.url}
