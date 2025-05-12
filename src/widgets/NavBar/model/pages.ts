@@ -1,4 +1,4 @@
-import { INavLink } from 'shared/interfaces/NavLink';
+import { INavLink } from 'shared/interfaces/NavLink.ts';
 
 export const mainPages: INavLink[] = [
   { url: '/tasks', text: 'Задачи', icon: 'tasks-icon' },
