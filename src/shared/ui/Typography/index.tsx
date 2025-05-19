@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import {FC, ReactNode} from 'react';
 import styles from './index.module.scss';
 
 interface Props {
