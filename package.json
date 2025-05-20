@@ -10,11 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hook-form": "^7.56.4",
     "react-router-dom": "^7.4.1",
     "scss": "^0.2.4",
-    "svgstore": "^3.0.1"
+    "svgstore": "^3.0.1",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",

@@ -4,6 +4,7 @@ import { MainLayout } from 'app/layouts/MainLayout';
 import { TaskPage } from 'pages/TaskPage';
 import { TeamPage } from 'pages/TeamPage';
 import { DashboardPage } from 'pages/DashboardPage';
+import {RegisterPage} from "pages/RegisterPage";
 
 const routeConfig: RouteObject[] = [
   {
@@ -27,6 +28,10 @@ const routeConfig: RouteObject[] = [
       },
     ],
   },
+  {
+    path: '/register',
+    element: <RegisterPage/>
+  }
 ];
 
 export const AppRouter = () => useRoutes(routeConfig);
