@@ -7,6 +7,6 @@ interface Props {
   authType: 'login' | 'register';
 }
 
-export const auth: FC<Props> = ({ authType }) => {
+export const Auth: FC<Props> = ({ authType }) => {
   if (authType === 'register') return <RegistrationForm />;
 };

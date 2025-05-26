@@ -1,0 +1,19 @@
+.Column {
+  margin-top: 2vh;
+  display: flex;
+  gap: 1vw 2vw;
+  width: 80%;
+  flex-direction: column;
+}
+.TaskContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.TaskName {
+  margin-left: 0.5vw;
+}
+
+/*# sourceMappingURL=index.module.css.map */
