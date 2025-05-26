@@ -1,0 +1,68 @@
+.formContainer {
+  width: 20vw;
+  padding: 20px;
+  border-radius: 10px;
+  background-color:  #f9f9f9;
+  text-align: center;
+  h2 {
+    color: red;
+    margin-bottom: 20px;
+  }
+}
+
+.formGroup {
+  margin-bottom: 15px;
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    color: #333;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 5px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.agreementText {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 15px;
+}
+
+.socialLogins {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.socialButton {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  .github {
+    background-color: #333; /* цвет GitHub */
+    color: white;
+  }
+
+  .google {
+    background-color: #4285f4; /* цвет Google */
+    color: white;
+  }
+}

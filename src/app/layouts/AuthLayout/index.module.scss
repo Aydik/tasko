@@ -1,0 +1,33 @@
+.registerPage {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: white;
+}
+
+.header {
+  padding: 20px
+}
+
+.logo {
+  color: red;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.mainContent {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  align-items: center;
+}
+
+.footer {
+  padding: 10px;
+  text-align: center;
+  color: #aaa;
+}
+
+
+
+

@@ -1,0 +1,14 @@
+.button {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: rgba(var(--color-dark), var(--opacity-1));
+
+  .name {
+    margin-left: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    color: inherit;
+  }
+}

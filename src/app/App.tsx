@@ -1,4 +1,4 @@
-import {FC, ReactElement} from 'react';
+import {FC} from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AppRouter } from './router/AppRouter';
 
