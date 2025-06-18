@@ -1,33 +1,70 @@
-.title {
-  color: rgba(var(--color-dark), var(--opacity-0));
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 32px;
+.formContainer {
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color:  #f9f9f9;
+  text-align: center;
+  h2 {
+    color: red;
+    margin-bottom: 20px;
+  }
+  margin-top: 10%;
 }
 
-form {
-  margin-top: 48px;
+.formGroup {
+  margin-bottom: 15px;
+  margin-right: 20px;
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    color: #333;
+  }
 }
 
-.inputGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-row-gap: 24px;
+.error {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 5px;
 }
 
-.button {
-  margin-top: 32px;
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.linkContainer {
-  margin-top: 16px;
+.agreementText {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 15px;
+}
+
+.socialLogins {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  margin-top: 15px;
+}
 
-  .link {
-    all: unset;
-    cursor: pointer;
-    color: rgb(var(--color-primary));
-    line-height: 20px;
+.socialButton {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  .github {
+    background-color: #333; /* цвет GitHub */
+    color: white;
+  }
+
+  .google {
+    background-color: #4285f4; /* цвет Google */
+    color: white;
   }
 }

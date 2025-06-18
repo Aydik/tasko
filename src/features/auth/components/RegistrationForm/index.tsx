@@ -2,14 +2,12 @@ import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationSchema } from 'app/schemas/validationScheme.ts';
-import styles from './index.module.scss';
-import getFieldValue from 'react-hook-form/dist/logic/getFieldValue';
-import { useNavigate } from 'react-router-dom';
+import styles from 'features/auth/styles/index.module.scss';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from 'app/store/auth/store.ts';
 import { RegistrationRequest } from 'features/auth/types';
-export const RegistrationForm: FC = () => {
-  const navigate = useNavigate();
 
+export const RegistrationForm: FC = () => {
   const {
     register,
     handleSubmit,
@@ -19,16 +17,19 @@ export const RegistrationForm: FC = () => {
     resolver: yupResolver(validationSchema),
   });
 
+  const navigate = useNavigate();
+
   const registration = useAuthStore((state) => state.register);
   const login = useAuthStore((state) => state.login);
-  const isLoading = useAuthStore((state) => state.isLoading);
-  const error = useAuthStore((state) => state.error);
+  const checkAuth = useAuthStore((state) => state.checkAuth);
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const data = getValues();
-    console.log(data);
     try {
-      registration(data as RegistrationRequest).then(() => login(data.email, data.password));
+      await registration(data as RegistrationRequest);
+      await login(data.email, data.password);
+      await checkAuth();
+      navigate('/tasks');
     } catch (e) {
       console.log(e);
     }
@@ -40,11 +41,11 @@ export const RegistrationForm: FC = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formGroup}>
           <input {...register('email')} placeholder="email" />
-          {errors.name && <p className={styles.error}>{errors.name.message}</p>}
+          {errors.email && <p className={styles.error}>{errors.email.message}</p>}
         </div>
         <div className={styles.formGroup}>
           <input {...register('name')} placeholder="name" />
-          {errors.surname && <p className={styles.error}>{errors.surname.message}</p>}
+          {errors.name && <p className={styles.error}>{errors.name.message}</p>}
         </div>
         <div className={styles.formGroup}>
           <input {...register('password')} type="password" placeholder="password" />
@@ -61,15 +62,16 @@ export const RegistrationForm: FC = () => {
           )}
         </div>
         <div className={styles.formGroup}>
-          <label> Вы ТимЛид? </label>
-          <input {...register('isTeamLead')} type="checkbox"></input>
+          <label htmlFor={'isTeamLead'}> Вы ТимЛид? </label>
+          <input id={'isTeamLead'} {...register('isTeamLead')} type="checkbox"></input>
         </div>
         <button type="submit">Создать аккаунт</button>
       </form>
       <p className={styles.agreementText}>
-        Нажимая на кнопку 'Создать аккаунт' вы соглашаетесь с правилами и политикой
+        Нажимая на кнопку &#39;Создать аккаунт&#39; вы соглашаетесь с правилами и политикой
         конфиденциальности
       </p>
+      <Link to={'/login'}>Войти</Link>
     </div>
   );
 };

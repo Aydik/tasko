@@ -5,8 +5,6 @@
   box-sizing: border-box;
 
   &__content {
-    margin-left: 54px;
-    margin-right: 88px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,8 +18,8 @@
 
   .divider {
     position: absolute;
-    left: 28px;
-    right: 46px;
+    left: 0;
+    right: 0;
     bottom: 0;
   }
 }

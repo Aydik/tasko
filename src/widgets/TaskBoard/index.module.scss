@@ -1,6 +1,5 @@
 .Board {
   display: flex;
   gap: 5%;
-  padding-left: 5vw;
-  padding-right: 5vw;
+  justify-content: space-between;
 }

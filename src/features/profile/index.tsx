@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import styles from './index.module.scss';
-import mockRobertPhoto from '../../../public/assets/images/robertohusaini.jpg';
 import { Typography } from 'shared/ui/Typography';
 import { useAuthStore } from 'app/store/auth/store.ts';
 import axios from 'axios';
@@ -9,6 +8,8 @@ import { BASE_URL } from 'shared/api/ENDPOINTS.ts';
 import { Variants } from 'shared/ui/Typography/enum/variants.ts';
 import { Button } from 'shared/ui/Button';
 import { useNavigate } from 'react-router-dom';
+import { Avatar } from 'entities/User/components/Avatar';
+import { axiosInstance } from 'shared/api/axiosInstance.ts';
 
 export const ProfileCard: FC = () => {
   const { user, setUser, logout } = useAuthStore();
@@ -22,10 +23,10 @@ export const ProfileCard: FC = () => {
 
       setIsLoading(true);
       try {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('accessToken');
         if (!token) throw new Error('No token found');
 
-        const response = await axios.get(`${BASE_URL}/api/profile/photo`, {
+        const response = await axiosInstance.get(`${BASE_URL}/api/profile/photo`, {
           responseType: 'blob',
           headers: {
             Authorization: `Bearer ${token}`,
@@ -109,17 +110,8 @@ export const ProfileCard: FC = () => {
       <div className={styles.avatarContainer}>
         {isLoading ? (
           <div className={styles.loading}>Загрузка...</div>
-        ) : avatar ? (
-          <img
-            src={avatar}
-            alt="Фото профиля"
-            className={styles.avatar}
-            onLoad={() => URL.revokeObjectURL(avatar)}
-          />
         ) : (
-          <div className={styles.avatarPlaceholder}>
-            <span>{user.name.charAt(0)}</span>
-          </div>
+          <Avatar size={120} src={avatar} />
         )}
       </div>
 
@@ -144,7 +136,9 @@ export const ProfileCard: FC = () => {
         />
         {isLoading ? 'Загрузка...' : 'Изменить фото'}
       </label>
-      <Button onClick={handleLogout} className={styles.logoutButton}>Выход</Button>
+      <Button onClick={handleLogout} className={styles.logoutButton}>
+        Выход
+      </Button>
     </div>
   );
 };

@@ -6,8 +6,8 @@ import { TaskProps } from 'entities/Task/types/types.ts';
 import { Typography } from 'shared/ui/Typography';
 import { Variants } from 'shared/ui/Typography/enum/variants.ts';
 import { useAuthStore } from 'app/store/auth/store.ts';
-import { deleteTask } from 'entities/Task/service/task.service.ts';
 import { useTaskStore } from 'features/draganddrop/store/task/store.ts';
+import { deleteTask } from 'features/draganddrop/services/task.service.ts';
 
 export const Task: FC<TaskProps> = ({ task }: TaskProps) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({ id: task.id });
@@ -20,14 +20,13 @@ export const Task: FC<TaskProps> = ({ task }: TaskProps) => {
 
   const handleDelete = async () => {
     console.log('handleDelete called for task:', task.id);
-    
+
     try {
       await deleteTask(task.id);
       await getTasks();
     } catch (error) {
       console.error('Error deleting task:', error);
     }
-    
   };
 
   console.log(user?.teamLead);

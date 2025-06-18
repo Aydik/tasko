@@ -1,18 +1,16 @@
-import axios from 'axios';
-import { BASE_URL } from 'shared/api/ENDPOINTS.ts';
+import { AUTH } from 'shared/api/ENDPOINTS.ts';
 import { LoginRequest, RegistrationRequest } from 'features/auth/types';
+import { axiosInstance } from 'shared/api/axiosInstance.ts';
 
 export const AuthService = {
   login: async (data: LoginRequest) => {
-    const response = await axios.post(`${BASE_URL}/api/auth/login`, data, {
-      withCredentials: true,
-    });
+    const response = await axiosInstance.post(`${AUTH}/login`, data);
     return response.data;
   },
 
   register: async (data: RegistrationRequest) => {
     const { email, password, name, isTeamLead } = data;
-    const response = await axios.post(`${BASE_URL}/api/auth/register`, {
+    const response = await axiosInstance.post(`${AUTH}/register`, {
       email,
       password,
       name,
@@ -22,55 +20,19 @@ export const AuthService = {
   },
 
   getCurrentUser: async () => {
-    const token = localStorage.getItem('token');
-    if (!token) throw new Error('No token found');
-
-    const response = await axios.get(`${BASE_URL}/api/auth/current-user`, {
-      withCredentials: true,
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
+    const response = await axiosInstance.get(`${AUTH}/current-user`);
     return response.data;
   },
 
   sendVerification: async () => {
-    await axios.post(
-      `${BASE_URL}/api/auth/send-verification`,
-      {},
-      {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      },
-    );
+    await axiosInstance.post(`${AUTH}/send-verification`);
   },
 
   verifyEmail: async (code: string) => {
-    await axios.post(
-      `${BASE_URL}/api/auth/verify-email`,
-      { code },
-      {
-        withCredentials: true,
-
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      },
-    );
+    await axiosInstance.post(`${AUTH}/verify-email`, { code });
   },
 
   logout: async () => {
-    await axios.post(
-      `${BASE_URL}/api/auth/logout`,
-      {},
-      {
-        withCredentials: true,
-
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      },
-    );
+    await axiosInstance.post(`${AUTH}/logout`);
   },
 };

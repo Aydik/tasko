@@ -4,7 +4,7 @@ import { devtools } from 'zustand/middleware';
 import { AuthService } from 'features/auth/services/auth.service.ts';
 import { RegistrationRequest } from 'features/auth/types';
 import { User } from 'entities/User/types';
-import { get } from 'axios';
+import Cookies from 'js-cookie';
 
 interface AuthState {
   user: User | null;
@@ -35,13 +35,13 @@ const initialState: AuthState = {
 
 export const useAuthStore = create<AuthState & AuthActions>()(
   devtools(
-    (set, get) => ({
+    (set) => ({
       ...initialState,
 
       checkAuth: async () => {
         set({ isLoading: true });
         try {
-          const token = localStorage.getItem('token');
+          const token = Cookies.get('accessToken');
           if (!token) {
             set({ isLoading: false });
             return;
@@ -57,7 +57,7 @@ export const useAuthStore = create<AuthState & AuthActions>()(
             isLoading: false,
           });
         } catch (error) {
-          localStorage.removeItem('token');
+          Cookies.remove('accessToken');
           set({
             ...initialState,
             isLoading: false,
@@ -75,7 +75,7 @@ export const useAuthStore = create<AuthState & AuthActions>()(
             isAuthenticated: true,
             isLoading: false,
           });
-          localStorage.setItem('token', response.token);
+          Cookies.set('accessToken', response.token);
         } catch (error: any) {
           set({
             error: error.response?.data?.message || 'Login failed',
@@ -94,7 +94,7 @@ export const useAuthStore = create<AuthState & AuthActions>()(
             isAuthenticated: true,
             isLoading: false,
           });
-          localStorage.setItem('token', response.token);
+          Cookies.set('accessToken', response.token);
         } catch (error: any) {
           set({
             error: error.response?.data?.message || 'Registration failed',
@@ -104,7 +104,7 @@ export const useAuthStore = create<AuthState & AuthActions>()(
       },
 
       logout: () => {
-        localStorage.removeItem('token');
+        Cookies.remove('accessToken');
         set(initialState);
       },
 

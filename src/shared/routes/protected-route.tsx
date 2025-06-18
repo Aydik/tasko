@@ -1,4 +1,4 @@
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { ReactNode, useEffect } from 'react';
 import { useAuthStore } from 'app/store/auth/store.ts';
 
@@ -8,8 +8,6 @@ export const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   const checkAuth = useAuthStore((state) => state.checkAuth);
 
   const location = useLocation();
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isAuthenticated) {

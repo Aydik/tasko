@@ -1,23 +1,10 @@
-import axios from 'axios';
-import { BASE_URL } from 'shared/api/ENDPOINTS.ts';
 import { TaskStatus, TaskType } from 'entities/Task/types/types.ts';
 import { CreateTaskInput, UpdateTaskInput } from 'features/draganddrop/types/types.ts';
-
-const getAuthToken = () => {
-  return localStorage.getItem('token');
-};
-
-const apiClient = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+import { axiosInstance } from 'shared/api/axiosInstance.ts';
+import { TASKS } from 'shared/api/ENDPOINTS.ts';
 
 export const getTasks = async (): Promise<TaskType[]> => {
-  const response = await apiClient.get('/api/tasks', {
-    headers: { Authorization: `Bearer ${getAuthToken()}` },
-  });
+  const response = await axiosInstance.get(TASKS);
   return response.data.map((task: any) => ({
     id: task.id,
     title: task.title,
@@ -28,9 +15,7 @@ export const getTasks = async (): Promise<TaskType[]> => {
 };
 
 export const createTask = async (input: CreateTaskInput): Promise<TaskType> => {
-  const response = await apiClient.post('/api/tasks', input, {
-    headers: { Authorization: `Bearer ${getAuthToken()}` },
-  });
+  const response = await axiosInstance.post(TASKS, input);
   return {
     id: response.data.id,
     title: response.data.title,
@@ -41,9 +26,7 @@ export const createTask = async (input: CreateTaskInput): Promise<TaskType> => {
 };
 
 export const updateTask = async (id: number, input: UpdateTaskInput): Promise<TaskType> => {
-  const response = await apiClient.put(`/api/tasks/${id}`, input, {
-    headers: { Authorization: `Bearer ${getAuthToken()}` },
-  });
+  const response = await axiosInstance.put(`${TASKS}/${id}`, input);
   return {
     id: response.data.id,
     title: response.data.title,
@@ -54,17 +37,11 @@ export const updateTask = async (id: number, input: UpdateTaskInput): Promise<Ta
 };
 
 export const deleteTask = async (id: number): Promise<void> => {
-  await apiClient.delete(`api/tasks/${id}`, {
-    headers: { Authorization: `Bearer ${getAuthToken()}` },
-  });
+  await axiosInstance.delete(`${TASKS}/${id}`);
 };
 
 export const updateTaskStatus = async (id: number, status: TaskStatus): Promise<TaskType> => {
-  const response = await apiClient.patch(
-    `api/tasks/${id}/status`,
-    {},
-    { params: { status }, headers: { Authorization: `Bearer ${getAuthToken()}` } },
-  );
+  const response = await axiosInstance.patch(`${TASKS}/${id}/status`, {}, { params: { status } });
   return {
     id: response.data.id,
     title: response.data.title,

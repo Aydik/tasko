@@ -61,8 +61,14 @@ export const NavBar: FC = () => {
             <Avatar size={40} src={user?.photoPath || null} />
           </div>
           <div className={clsx(styles.credentialsContainer)}>
-            <Typography variant={Variants.P}> {user?.name} </Typography>
-            <Typography variant={Variants.P}> {user?.email} </Typography>
+            <Typography variant={Variants.P} className={styles.credential}>
+              {' '}
+              {user?.name}{' '}
+            </Typography>
+            <Typography variant={Variants.P} className={styles.credential}>
+              {' '}
+              {user?.email}{' '}
+            </Typography>
           </div>
         </Link>
       </div>

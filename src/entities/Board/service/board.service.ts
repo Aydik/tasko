@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { apiClient, getAuthToken } from 'shared/api/api.ts';
+import { axiosInstance } from 'shared/api/axiosInstance';
+import { BOARDS } from 'shared/api/ENDPOINTS.ts';
 
 export interface BoardDto {
   id: string;
@@ -8,15 +8,11 @@ export interface BoardDto {
 }
 
 export const getBoards = async (): Promise<BoardDto[]> => {
-  const response = await apiClient.get('/api/boards', {
-    headers: { Authorization: `Bearer ${getAuthToken()}` },
-  });
+  const response = await axiosInstance.get(BOARDS);
   return response.data;
 };
 
 export const getBoardsByProject = async (projectId: number): Promise<BoardDto[]> => {
-  const response = await apiClient.get(`/api/boards/project/${projectId}`, {
-    headers: { Authorization: `Bearer ${getAuthToken()}` },
-  });
+  const response = await axiosInstance.get(`${BOARDS}/project/${projectId}`);
   return response.data;
 };

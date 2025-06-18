@@ -15,6 +15,7 @@ export const validationSchema = Yup.object().shape({
       'Пароли должны совпадать',
     )
     .required('Подтверждение пароля обязательно'),
+  isTeamLead: Yup.boolean(),
 });
 
 export const validationLoginSchema = Yup.object().shape({

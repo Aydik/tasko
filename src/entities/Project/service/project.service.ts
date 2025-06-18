@@ -1,4 +1,5 @@
-import { apiClient, getAuthToken } from 'shared/api/api.ts';
+import { axiosInstance } from 'shared/api/axiosInstance.ts';
+import { PROJECTS } from 'shared/api/ENDPOINTS.ts';
 
 export interface ProjectDto {
   id: string;
@@ -9,17 +10,11 @@ export interface ProjectDto {
 }
 
 export const getProjects = async (): Promise<ProjectDto[]> => {
-  const response = await apiClient.get('/api/projects', {
-    headers: { Authorization: `Bearer ${getAuthToken()}` },
-  });
-
+  const response = await axiosInstance.get(PROJECTS);
   return response.data;
 };
 
 export const getProjectByUserId = async (userId: number): Promise<ProjectDto[]> => {
-  const response = await apiClient.get(`/api/projects/${userId}`, {
-    headers: { Authorization: `Bearer ${getAuthToken()}` },
-  });
-
+  const response = await axiosInstance.get(`${PROJECTS}/${userId}`);
   return response.data;
 };

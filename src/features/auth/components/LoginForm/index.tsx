@@ -1,107 +1,52 @@
 import { FC } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-// import { FormType } from 'features/Authentication/types';
-// import { Button } from 'shared/ui/Button';
-import { Typography } from 'shared/ui/Typography';
-import styles from 'features/Authentication/styles/index.module.scss';
-// import { InputWithFormatter } from 'features/Authentication/components/ui/InputWithFormatter';
-// import { formatPhone, formatPhoneBeforeRequest } from 'shared/utils/phoneFormatter.ts';
-// import { authUser } from 'features/Authentication/services/auth.service.ts';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { validationLoginSchema } from 'app/schemas/validationScheme.ts';
+import styles from 'features/auth/styles/index.module.scss';
+import { useAuthStore } from 'app/store/auth/store.ts';
 
-// interface LoginFormData {
-//   phone: string;
-//   password: string;
-// }
-//
-// interface Props {
-//   setFormType: (type: FormType) => void;
-// }
-//
-// export const LoginForm: FC<Props> = ({ setFormType }) => {
-//   const {
-//     handleSubmit,
-//     control,
-//     formState: { errors },
-//     setError,
-//   } = useForm<LoginFormData>();
-//
-//   const onSubmit = async (data: LoginFormData) => {
-//     try {
-//       await authUser({
-//         login: formatPhoneBeforeRequest(data.phone),
-//         password: data.password,
-//       });
-//     } catch (e) {
-//       console.error('Ошибка авторизации:', e);
-//       setError('password', {
-//         type: 'manual',
-//         message: 'Неверный телефон или пароль',
-//       });
-//     }
-//   };
-//
-//   return (
-//     <>
-//       <Typography variant={Va} className={styles.title}>
-//         Вход
-//       </Typography>
-//       <form onSubmit={handleSubmit(onSubmit)}>
-//         <div className={styles.inputGrid}>
-//           <InputWithFormatter<LoginFormData>
-//             name="phone"
-//             label="Телефон"
-//             type="tel"
-//             control={control}
-//             format={formatPhone}
-//             error={errors.phone}
-//             rules={{
-//               required: 'Телефон обязателен',
-//               validate: (value: string | undefined) => {
-//                 if (!value) return false;
-//                 const digitsOnly = value.replace(/\D/g, '');
-//                 return digitsOnly.length === 11 || 'Неверный формат телефона';
-//               },
-//             }}
-//           />
-//           <InputWithFormatter<LoginFormData>
-//             name="password"
-//             label="Пароль"
-//             type="password"
-//             control={control}
-//             error={errors.password}
-//             rules={{
-//               required: 'Введите пароль',
-//               minLength: {
-//                 value: 6,
-//                 message: 'Пароль должен содержать минимум 6 символов',
-//               },
-//             }}
-//           />
-//         </div>
-//         <Button style="primary" className={styles.button} type="submit">
-//           Войти
-//         </Button>
-//         <div className={styles.linkContainer}>
-//           <button type="button" className={styles.link}>
-//             Войти с помощью смс
-//           </button>
-//           <button type="button" className={styles.link} onClick={() => setFormType('register')}>
-//             Регистрация
-//           </button>
-//         </div>
-//         <Button
-//           key={'loginForPartners'}
-//           style={'secondary'}
-//           className={styles.button}
-//           onClick={() => setFormType('login')}
-//         >
-//           Вход для партнеров
-//         </Button>
-//       </form>
-//     </>
-//   );
-// };
+export const LoginForm: FC = () => {
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationLoginSchema),
+  });
 
-const LoginForm: FC = () => {
-  return;
+  const navigate = useNavigate();
+
+  const login = useAuthStore((state) => state.login);
+  const checkAuth = useAuthStore((state) => state.checkAuth);
+
+  const onSubmit = async () => {
+    const { email, password } = getValues();
+    try {
+      await login(email, password);
+      await checkAuth();
+      navigate('/tasks');
+    } catch (e: any) {
+      alert(e.message);
+    }
+  };
+
+  return (
+    <div className={styles.formContainer}>
+      <h2>Вход</h2>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.formGroup}>
+          <input type="email" {...register('email')} placeholder="email" />
+          {errors.email && <p className={styles.error}>{errors.email.message}</p>}
+        </div>
+        <div className={styles.formGroup}>
+          <input {...register('password')} type="password" placeholder="password" />
+          {errors.password && <p className={styles.error}>{errors.password.message}</p>}
+        </div>
+        <button type="submit">Войти</button>
+      </form>
+      <Link to={'/register'}>Регистрация</Link>
+    </div>
+  );
 };

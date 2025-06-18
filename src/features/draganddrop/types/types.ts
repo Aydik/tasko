@@ -1,5 +1,4 @@
 import { TaskStatus, TaskType } from 'entities/Task/types/types.ts';
-import { User } from 'entities/User/types';
 
 export interface ColumnType {
   id: TaskStatus;
@@ -10,7 +9,7 @@ export interface ColumnProps {
   column: ColumnType;
   tasks: TaskType[];
   isTeamLead: boolean;
-  setIsCreateModalOpen?: (boolean) => void;
+  setIsCreateModalOpen?: (isCreateModal: boolean) => void;
 }
 
 export interface CreateTaskInput {

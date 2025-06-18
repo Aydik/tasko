@@ -1,5 +1,5 @@
-import { FC, useState } from 'react';
-import { ColumnProps, ColumnType } from 'features/draganddrop/types/types.ts';
+import { FC } from 'react';
+import { ColumnProps } from 'features/draganddrop/types/types.ts';
 import { Task } from 'src/entities/Task';
 
 import styles from './index.module.scss';
