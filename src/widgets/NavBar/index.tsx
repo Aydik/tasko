@@ -1,27 +1,33 @@
 import { FC } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Divider } from 'shared/ui/Divider';
 import { Typography } from 'shared/ui/Typography';
 import { LogoLink } from './components/LogoLink';
 import { NavLink } from './components/NavLink';
-import { MAIN_PAGES, HELP_PAGES } from 'widgets/NavBar/constants';
+import { HELP_PAGES, MAIN_PAGES } from 'widgets/NavBar/constants';
 import styles from './index.module.scss';
+import { Variants } from 'shared/ui/Typography/enum/variants.ts';
+import clsx from 'clsx';
+
+import { useAuthStore } from 'app/store/auth/store.ts';
+import { Avatar } from 'entities/User/components/Avatar';
 
 export const NavBar: FC = () => {
   const location = useLocation();
   const currentPath = location.pathname;
+  const { user } = useAuthStore();
 
   const isSelected = (path: string) => currentPath === path;
 
   return (
-    <div className={styles.navBar}>
-      <nav className={styles.nav}>
-        <div className={styles.logoLink_container}>
+    <div className={clsx(styles.navBar)}>
+      <nav className={clsx(styles.nav)}>
+        <div className={clsx(styles.logoLink_container)}>
           <LogoLink url="/" />
         </div>
-        <ul className={styles.navList}>
+        <ul className={clsx(styles.navList)}>
           {MAIN_PAGES.map((page) => (
-            <li key={page.url} className={styles.navList__item}>
+            <li key={page.url} className={clsx(styles.navList__item)}>
               <NavLink
                 url={page.url}
                 icon={page.icon}
@@ -31,12 +37,12 @@ export const NavBar: FC = () => {
             </li>
           ))}
         </ul>
-        <Typography variant={'h3'} className={styles.helpTitle}>
+        <Typography variant={Variants.H3} className={clsx(styles.helpTitle)}>
           Помощь
         </Typography>
-        <ul className={`${styles.navList} ${styles.navList_help}`}>
+        <ul className={clsx(styles.navList, styles.navList_help)}>
           {HELP_PAGES.map((page) => (
-            <li key={page.url} className={styles.navList__item}>
+            <li key={page.url} className={clsx(styles.navList__item)}>
               <NavLink
                 url={page.url}
                 icon={page.icon}
@@ -48,7 +54,18 @@ export const NavBar: FC = () => {
         </ul>
       </nav>
       <Divider />
-      <div className={styles.accountContainer} />
+
+      <div className={clsx(styles.accountContainer)}>
+        <Link to={'/profile'}>
+          <div className={clsx(styles.avatarContainer)}>
+            <Avatar size={40} src={user?.photoPath || null} />
+          </div>
+          <div className={clsx(styles.credentialsContainer)}>
+            <Typography variant={Variants.P}> {user?.name} </Typography>
+            <Typography variant={Variants.P}> {user?.email} </Typography>
+          </div>
+        </Link>
+      </div>
     </div>
   );
 };

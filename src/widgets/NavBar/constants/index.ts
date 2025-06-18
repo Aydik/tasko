@@ -2,7 +2,7 @@ import { NavLink } from 'widgets/NavBar/types';
 
 export const MAIN_PAGES: NavLink[] = [
   { url: '/tasks', text: 'Задачи', icon: 'tasks-icon' },
-  { url: '/teams', text: 'Команды', icon: 'teams-icon' },
+  { url: '/team', text: 'Команды', icon: 'teams-icon' },
   { url: '/dashboards', text: 'Дэшборды', icon: 'dashboard-icon' },
 ];
 

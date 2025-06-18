@@ -5,6 +5,7 @@ export interface TaskType {
   title: string;
   description: string;
   status: TaskStatus;
+  createdAt: string;
 }
 
 export interface TaskProps {

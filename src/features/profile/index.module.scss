@@ -1,0 +1,79 @@
+.profileWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  background-color: var(--card-bg-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow-small);
+  max-width: 400px;
+  margin: 50px 0 50px 50px;
+}
+
+.avatarContainer {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatarPlaceholder {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.loading {
+  font-size: 18px;
+  color: var(--text-secondary-color);
+}
+
+.email {
+  margin-top: 5px;
+  color: var(--text-secondary-color);
+}
+
+.emailVerified {
+  margin-top: 10px;
+  color: var(--success-color);
+  font-weight: bold;
+}
+
+.uploadButton {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+.fileInput {
+  display: none;
+}
+
+.logoutButton {
+  margin-top: 10px;
+  background-color: #dc3545;
+
+  &:hover {
+    background-color: #c82333;
+  }
+}

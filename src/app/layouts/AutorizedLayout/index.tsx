@@ -1,14 +1,13 @@
 import { FC, useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { getProfile } from 'entities/User/services/user.servise.ts';
+import { useAuthStore } from 'app/store/auth/store.ts';
+import styles from './index.module.scss';
+import clsx from 'clsx';
 
-const AuthorizedLayout: FC = () => {
-  const [access, setAccess] = useState<boolean>();
-  const navigate = useNavigate();
-  useEffect(() => {
-    getProfile()
-      .then(() => setAccess(true))
-      .catch(() => navigate('/login'));
-  }, []);
-  if (access) return <Outlet />;
+export const AuthorizedLayout: FC = () => {
+  return (
+    <div className={clsx(styles.mainContent)}>
+      <Outlet />
+    </div>
+  );
 };

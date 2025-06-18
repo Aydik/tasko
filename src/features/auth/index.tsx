@@ -1,12 +1,12 @@
 import { FC, useEffect, useState } from 'react';
 import { getProfile } from 'entities/User/services/user.servise.ts';
-import { redirect } from 'react-router-dom';
 import { RegistrationForm } from 'features/auth/components/RegistrationForm';
+import { SignInForm } from 'features/auth/components/SignInForm';
 
 interface Props {
   authType: 'login' | 'register';
 }
 
 export const Auth: FC<Props> = ({ authType }) => {
-  if (authType === 'register') return <RegistrationForm />;
+  return authType === 'register' ? <RegistrationForm /> : <SignInForm />;
 };

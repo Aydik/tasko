@@ -1,15 +1,12 @@
-export type FormType = 'login' | 'register';
-
-export interface AuthorizeUserData {
-  login: string;
-  password: string;
-}
-
-export interface RegisterUserData {
-  login: string;
-  firstname: string;
-  lastname: string;
-  phone_number: string;
+export interface RegistrationRequest {
   email: string;
   password: string;
+  name: string;
+  isTeamLead: boolean;
+}
+
+export interface LoginRequest {
+  email: string;
+  password: string;
+  token?: string;
 }

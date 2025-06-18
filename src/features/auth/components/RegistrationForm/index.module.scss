@@ -1,5 +1,5 @@
 .formContainer {
-  width: 20vw;
+  max-width: 500px;
   padding: 20px;
   border-radius: 10px;
   background-color:  #f9f9f9;
@@ -8,10 +8,12 @@
     color: red;
     margin-bottom: 20px;
   }
+  margin-top: 10%;
 }
 
 .formGroup {
   margin-bottom: 15px;
+  margin-right: 20px;
   input {
     width: 100%;
     padding: 10px;

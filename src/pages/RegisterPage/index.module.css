@@ -1,8 +1,10 @@
+@charset "UTF-8";
 .registerPage {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   background-color: white;
+  align-items: center;
 }
 
 .header {
@@ -23,6 +25,10 @@
 }
 
 .footer {
+  position: fixed; /* Подвал как приклеенный */
+  bottom: 0; /* Фиксация снизу */
+  left: 0; /* К началу слева */
+  right: 0; /* Без отступов справа */
   padding: 10px;
   text-align: center;
   color: #aaa;

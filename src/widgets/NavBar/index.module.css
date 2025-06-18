@@ -1,0 +1,55 @@
+.navBar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 10;
+  padding: 0 18px;
+  background: white;
+  border-top-right-radius: var(--nav-bar-border-radius);
+  border-bottom-right-radius: var(--nav-bar-border-radius);
+  display: grid;
+  grid-template-rows: auto var(--divider-height) 112px;
+}
+.navBar .logoLink_container {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navBar .helpTitle {
+  margin-top: 40px;
+  padding: 0 17px;
+  color: grey;
+  font-size: 16px;
+  font-weight: 600;
+}
+.navBar .navList {
+  list-style-type: none;
+  padding: 0 7px;
+  margin: 0;
+}
+.navBar .navList__item {
+  margin-bottom: 5px;
+}
+.navBar .navList_help {
+  margin-top: 20px;
+}
+
+.accountContainer a {
+  margin-top: 20px;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-color);
+}
+.accountContainer .avatarContainer {
+  padding: 10px;
+}
+.accountContainer .credentialsContainer {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+/*# sourceMappingURL=index.module.css.map */

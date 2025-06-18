@@ -1,9 +1,17 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { DndContext, DragEndEvent } from '@dnd-kit/core';
 import { ColumnType } from 'features/draganddrop/types/types.ts';
 import { Column } from 'features/draganddrop/components/Column';
-import { Task } from 'src/entities/Task';
-import { TaskType } from 'entities/Task/types/types.ts';
+import { TaskStatus, TaskType } from 'entities/Task/types/types.ts';
+import { useTaskStore } from 'features/draganddrop/store/task/store.ts';
+import { useAuthStore } from 'app/store/auth/store.ts';
+import clsx from 'clsx';
+import { CreateTaskModal } from 'features/draganddrop/modal/CreateTaskModal.tsx';
+import styles from './index.module.scss';
+
+interface Props {
+  searchQuery: string;
+}
 
 const COLUMNS: ColumnType[] = [
   { id: 'TODO', title: 'To Do' },
@@ -11,46 +19,78 @@ const COLUMNS: ColumnType[] = [
   { id: 'DONE', title: 'Done' },
 ];
 
-const INITIAL_TASKS: TaskType[] = [
-  { id: '1', title: 'API', description: 'создать api для приложения', status: 'TODO' },
-  { id: '2', title: 'Дизайн', description: 'создать дизайн для приложения', status: 'IN_PROGRESS' },
-  { id: '3', title: 'Фронтенд', description: 'Сверстать компонеты', status: 'IN_PROGRESS' },
-  { id: '4', title: 'Тестирование', description: 'Задеплоить все приложение', status: 'DONE' },
-];
+export const DragAndDrop: FC<Props> = ({ searchQuery }) => {
+  const { tasks, getTasks, updateTaskStatus, createTask, isLoading, error } = useTaskStore();
+  const { user } = useAuthStore();
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
-export const DragAndDrop: FC = () => {
-  const [tasks, setTasks] = useState<TaskType[]>(INITIAL_TASKS);
+  useEffect(() => {
+    getTasks();
+  }, [getTasks]);
 
-  const handleDragEnd = (event: DragEndEvent) => {
+  const isTeamLead: boolean = user?.teamLead || false; // Default to false if undefined
+
+  const handleDragEnd = async (event: DragEndEvent) => {
     const { active, over } = event;
 
     if (!over) return;
 
-    const taskId = active.id as string;
-    const newStatus = over.id as Task['status'];
+    const taskId = Number(active.id);
+    console.log(taskId);
+    const newStatus = over.id as TaskStatus;
 
-    setTasks(() =>
-      tasks.map((task) =>
-        task.id === taskId
-          ? {
-              ...task,
-              status: newStatus,
-            }
-          : task,
-      ),
-    );
+    try {
+      await updateTaskStatus(taskId, newStatus);
+    } catch (error) {
+      console.error('Failed to update task status', error);
+    }
   };
 
+  const handleCreateTask = async (taskData: {
+    title: string;
+    description: string;
+    status?: TaskStatus;
+    projectId: number;
+    boardId: number;
+    assigneeId?: number;
+  }) => {
+    await createTask({
+      title: taskData.title,
+      description: taskData.description,
+      status: taskData.status || COLUMNS[0].id as TaskStatus,
+      projectId: taskData.projectId,
+      boardId: taskData.boardId,
+      assigneeId: taskData.assigneeId,
+      authorId: user?.id || 0,
+    });
+    setIsCreateModalOpen(false);
+  };
+
+  const filteredTasks = tasks.filter(task => 
+    task.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  if (isLoading) return <div className={clsx(styles.loading)}>Loading...</div>;
+  if (error) return <div className={clsx(styles.error)}>Error: {error}</div>;
+
   return (
-    <DndContext onDragEnd={handleDragEnd}>
-      {COLUMNS.map((column) => (
-        <Column
-          key={column.id}
-          title={column.title}
-          column={column}
-          tasks={tasks.filter((task) => task.status === column.id)}
-        />
-      ))}
-    </DndContext>
+    <>
+      <DndContext onDragEnd={handleDragEnd}>
+        {COLUMNS.map((column) => (
+          <Column
+            key={column.id}
+            column={column}
+            tasks={filteredTasks.filter((task) => task.status === column.id)}
+            isTeamLead={isTeamLead}
+            setIsCreateModalOpen={setIsCreateModalOpen}
+          />
+        ))}
+      </DndContext>
+      <CreateTaskModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onCreate={handleCreateTask}
+      />
+    </>
   );
 };

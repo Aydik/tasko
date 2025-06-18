@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, ChangeEvent } from 'react';
 import styles from './index.module.scss';
 import { SearchBar } from '../../ui/SearchBar';
 import { Typography } from '../../ui/Typography';
@@ -7,16 +7,18 @@ import { Variants } from 'shared/ui/Typography/enum/variants.ts';
 
 interface Props {
   title: string;
+  searchQuery: string;
+  onSearchChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Caption: FC<Props> = ({ title }) => {
+export const Caption: FC<Props> = ({ title, searchQuery, onSearchChange }) => {
   return (
     <div className={styles.caption}>
       <div className={styles.caption__content}>
         <Typography variant={Variants.H1} className={styles.caption__title}>
           {title}
         </Typography>
-        <SearchBar />
+        <SearchBar value={searchQuery} onChange={onSearchChange} />
       </div>
       <Divider className={styles.divider} />
     </div>

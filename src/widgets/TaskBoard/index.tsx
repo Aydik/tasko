@@ -1,13 +1,16 @@
 import { FC } from 'react';
-import { Caption } from 'src/shared/components/Caption';
 import clsx from 'clsx';
 import styles from './index.module.scss';
 import { DragAndDrop } from 'features/draganddrop';
 
-export const TaskBoard: FC = () => {
+interface Props {
+  searchQuery: string;
+}
+
+export const TaskBoard: FC<Props> = ({ searchQuery }) => {
   return (
     <div className={clsx(styles.Board)}>
-      <DragAndDrop />
+      <DragAndDrop searchQuery={searchQuery} />
     </div>
   );
 };
